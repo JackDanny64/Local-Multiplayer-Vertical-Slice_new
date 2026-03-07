@@ -10,10 +10,6 @@ public class PlayerSpawner : MonoBehaviour
     public void OnPlayerJoined(PlayerInput playerInput)
     {
         playerInput.transform.position = Spawnpoints[playercount].transform.position;
-        if(playercount == 0)
-        {
-            playerInput.GetComponent<FPSControllerRigidbody>();
-        }
         playercount++;
     }
 }
