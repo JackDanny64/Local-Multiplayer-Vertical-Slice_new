@@ -80,7 +80,7 @@
                 {
                     "name": "",
                     "id": "4afe9b6e-5ddf-4e1f-a9fd-173ce809d979",
-                    "path": "<XInputController>/rightTrigger",
+                    "path": "<Gamepad>/rightTrigger",
                     "interactions": "",
                     "processors": "",
                     "groups": "",

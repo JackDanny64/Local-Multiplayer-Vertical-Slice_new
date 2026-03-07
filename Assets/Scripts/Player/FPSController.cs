@@ -7,6 +7,7 @@ public class FPSController : MonoBehaviour
     public float mouseSensitivity = 2f;
     public float jumpForce = 5f;
     public float gravity = -9.81f;
+    public Gun gun;
 
     public Transform playerCamera;
 
@@ -66,5 +67,11 @@ public class FPSController : MonoBehaviour
         {
             verticalVelocity = Mathf.Sqrt(jumpForce * -2f * gravity);
         }
+    }
+
+    public void OnShoot()
+    {
+        gun.Shoot();
+        Debug.Log(gameObject.name + " fired");
     }
 }

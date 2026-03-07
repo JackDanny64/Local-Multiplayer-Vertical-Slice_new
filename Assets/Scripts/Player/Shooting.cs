@@ -6,7 +6,7 @@ public class Gun : MonoBehaviour
     public Camera playerCamera;
     public float range = 100f;
 
-    public void OnShoot()
+    public void Shoot()
     {
         Ray ray = new Ray(playerCamera.transform.position, playerCamera.transform.forward);
         RaycastHit hit;
