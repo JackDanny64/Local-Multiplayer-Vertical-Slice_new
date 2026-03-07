@@ -111,6 +111,34 @@
                     "isPartOfComposite": false
                 }
             ]
+        },
+        {
+            "name": "UI",
+            "id": "733ba4a6-ee08-4cea-9a35-c9f510a14e3d",
+            "actions": [
+                {
+                    "name": "JoinGame",
+                    "type": "Button",
+                    "id": "802e283a-b6a0-480b-aba0-9602b43fc9f6",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "1557cbb8-ed94-4e26-b65d-c714e6ceb3f8",
+                    "path": "<Gamepad>/start",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "JoinGame",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": [

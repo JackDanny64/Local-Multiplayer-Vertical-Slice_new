@@ -1,46 +1,33 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class FPSController : MonoBehaviour
+[RequireComponent(typeof(Rigidbody))]
+public class FPSControllerRigidbody : MonoBehaviour
 {
     public float speed = 5f;
     public float mouseSensitivity = 2f;
     public float jumpForce = 5f;
-    public float gravity = -9.81f;
     public Gun gun;
 
     public Transform playerCamera;
 
-    CharacterController controller;
+    private Rigidbody rb;
 
-    Vector2 moveInput;
-    Vector2 lookInput;
+    private Vector2 moveInput;
+    private Vector2 lookInput;
 
-    float verticalVelocity;
-    float xRotation = 0f;
+    private float xRotation = 0f;
+    private bool jumpRequest = false;
 
     void Start()
     {
-        controller = GetComponent<CharacterController>();
+        rb = GetComponent<Rigidbody>();
+        rb.freezeRotation = true; // prevent physics from rotating player
     }
 
     void Update()
     {
-        // Ground check
-        if (controller.isGrounded && verticalVelocity < 0)
-        {
-            verticalVelocity = -2f;
-        }
-
-        // Movement
-        Vector3 move = transform.right * moveInput.x + transform.forward * moveInput.y;
-        controller.Move(move * speed * Time.deltaTime);
-
-        // Gravity
-        verticalVelocity += gravity * Time.deltaTime;
-        controller.Move(Vector3.up * verticalVelocity * Time.deltaTime);
-
-        // Look
+        // Look rotation
         float mouseX = lookInput.x * mouseSensitivity * 100f * Time.deltaTime;
         float mouseY = lookInput.y * mouseSensitivity * 100f * Time.deltaTime;
 
@@ -49,6 +36,28 @@ public class FPSController : MonoBehaviour
 
         playerCamera.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
         transform.Rotate(Vector3.up * mouseX);
+    }
+
+    void FixedUpdate()
+    {
+        // Movement
+        Vector3 move = transform.right * moveInput.x + transform.forward * moveInput.y;
+        Vector3 targetVelocity = move * speed;
+        Vector3 velocity = new Vector3(targetVelocity.x, rb.linearVelocity.y, targetVelocity.z);
+        rb.linearVelocity = velocity;
+
+        // Jump
+        if (jumpRequest && IsGrounded())
+        {
+            rb.AddForce(Vector3.up * jumpForce, ForceMode.VelocityChange);
+        }
+        jumpRequest = false; // reset jump
+    }
+
+    private bool IsGrounded()
+    {
+        // Check using a small raycast below the player
+        return Physics.Raycast(transform.position, Vector3.down, 1.1f);
     }
 
     public void OnMove(InputValue value)
@@ -63,10 +72,7 @@ public class FPSController : MonoBehaviour
 
     public void OnJump()
     {
-        if (controller.isGrounded)
-        {
-            verticalVelocity = Mathf.Sqrt(jumpForce * -2f * gravity);
-        }
+        jumpRequest = true;
     }
 
     public void OnShoot()
