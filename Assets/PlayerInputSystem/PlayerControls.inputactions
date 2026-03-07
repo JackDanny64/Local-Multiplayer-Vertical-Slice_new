@@ -46,41 +46,19 @@
             "bindings": [
                 {
                     "name": "",
-                    "id": "ffbc920e-829e-4d63-bfc3-6e9511d817d4",
-                    "path": "",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Move",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "ce3e948b-86ab-4a09-ba12-3d245ea491e0",
-                    "path": "<Gamepad>/leftStick/left",
+                    "path": "<Gamepad>/leftStick",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
                     "action": "Move",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "f7160847-bd71-43bd-8717-6807eff24b5b",
-                    "path": "",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Look",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
                     "id": "086e4068-0776-4452-8d8b-ff99ab5202db",
-                    "path": "<Gamepad>/rightStick/down",
+                    "path": "<Gamepad>/rightStick",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
