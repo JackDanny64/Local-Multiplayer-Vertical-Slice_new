@@ -20,6 +20,12 @@ public class PlayerSpawner : MonoBehaviour
 
     public void OnPlayerJoined(PlayerInput playerInput)
     {
+        if (playerCount >= Spawnpoints.Length)
+        {
+            Debug.LogWarning("PlayerCount exceeds spawn points. Ignoring join.");
+            return;
+        }
+
         // Move player to correct spawn point
         playerInput.transform.position = Spawnpoints[playerCount].position;
 

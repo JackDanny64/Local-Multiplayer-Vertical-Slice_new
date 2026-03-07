@@ -3,17 +3,11 @@ using UnityEngine.InputSystem;
 
 public class Gun : MonoBehaviour
 {
-    public Camera playerCamera;
-    public float range = 100f;
+    public Transform firePoint;
+    public GameObject bulletPrefab;
 
     public void Shoot()
     {
-        Ray ray = new Ray(playerCamera.transform.position, playerCamera.transform.forward);
-        RaycastHit hit;
-
-        if (Physics.Raycast(ray, out hit, range))
-        {
-            Debug.Log("Hit " + hit.collider.name);
-        }
+        Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
     }
 }

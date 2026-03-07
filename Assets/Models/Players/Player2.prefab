@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &299523709215801458
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6245936171639427317}
+  m_Layer: 0
+  m_Name: FirePoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6245936171639427317
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 299523709215801458}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.38, z: 0.705}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4456267962102107273}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2131952328306662422
 GameObject:
   m_ObjectHideFlags: 0
@@ -144,6 +175,7 @@ GameObject:
   - component: {fileID: 482073057709603577}
   - component: {fileID: 1370577409769126976}
   - component: {fileID: 9048539657747129689}
+  - component: {fileID: 5860650443819396051}
   m_Layer: 0
   m_Name: Player2
   m_TagString: Untagged
@@ -165,6 +197,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4415706806516396205}
+  - {fileID: 6245936171639427317}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &282336584827321492
@@ -289,8 +322,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9943f29aab23ed40bf03f94cf74684c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Gun
-  playerCamera: {fileID: 6786912920712805160}
-  range: 100
+  firePoint: {fileID: 6245936171639427317}
+  bulletPrefab: {fileID: 2981340012134076737, guid: 2414d8b058ece0942ae72afa19d48e77, type: 3}
 --- !u!114 &1370577409769126976
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -335,3 +368,17 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &5860650443819396051
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8237941180310244461}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa8f3624262a16c43bea2255599c51a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerHealth
+  maxHealth: 100
+  playerID: 0
