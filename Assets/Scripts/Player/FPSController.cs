@@ -44,7 +44,7 @@ public class FPSControllerRigidbody : MonoBehaviour
     private bool isAiming = false;
     private bool isRunning = false;
 
-    private float currentStamina;
+    public float currentStamina;
 
     void Start()
     {

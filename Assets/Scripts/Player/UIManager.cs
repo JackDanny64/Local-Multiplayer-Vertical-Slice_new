@@ -12,6 +12,10 @@ public class UIManager : MonoBehaviour
     public TMP_Text ammoText;           // Ammo text
     public Image healthFillImage;       // Health bar fill image
 
+    [Header("Stamina UI")]
+    public FPSControllerRigidbody playerController; // assign the player controller
+    public Image staminaFillImage; // stamina bar fill
+
     void Start()
     {
         if (gun == null)
@@ -22,6 +26,7 @@ public class UIManager : MonoBehaviour
     {
         UpdateAmmoUI();
         UpdateHealthUI();
+        UpdateStaminaUI();
     }
 
     void UpdateAmmoUI()
@@ -42,6 +47,17 @@ public class UIManager : MonoBehaviour
 
             // Optional: color change from green -> red
             healthFillImage.color = Color.Lerp(Color.red, Color.green, fillAmount);
+        }
+    }
+    void UpdateStaminaUI()
+    {
+        if (playerController != null && staminaFillImage != null)
+        {
+            float fillAmount = playerController.currentStamina / playerController.maxStamina;
+            staminaFillImage.fillAmount = fillAmount;
+
+            // Optional: color change (green -> yellow -> red)
+            staminaFillImage.color = Color.Lerp(Color.red, Color.blue, fillAmount);
         }
     }
 }
