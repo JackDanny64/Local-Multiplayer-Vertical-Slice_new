@@ -62,13 +62,9 @@ public class GameManager : MonoBehaviour
     {
         Debug.Log("Round Over");
 
-        if (player1Score > player2Score)
-            Debug.Log("Player 1 Wins");
-        else if (player2Score > player1Score)
-            Debug.Log("Player 2 Wins");
-        else
-            Debug.Log("Draw");
+        Time.timeScale = 0f;
 
-        Time.timeScale = 0;
+        // Load Results scene
+        UnityEngine.SceneManagement.SceneManager.LoadScene("Results");
     }
 }
