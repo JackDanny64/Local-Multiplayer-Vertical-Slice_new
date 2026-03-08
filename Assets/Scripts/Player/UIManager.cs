@@ -16,6 +16,11 @@ public class UIManager : MonoBehaviour
     public FPSControllerRigidbody playerController; // assign the player controller
     public Image staminaFillImage; // stamina bar fill
 
+    [Header("Game Timer & Score UI")]
+    public TMP_Text timerText;          // Timer countdown
+    public TMP_Text player1ScoreText;   // Player 1 score
+    public TMP_Text player2ScoreText;   // Player 2 score
+
     void Start()
     {
         if (gun == null)
@@ -27,6 +32,8 @@ public class UIManager : MonoBehaviour
         UpdateAmmoUI();
         UpdateHealthUI();
         UpdateStaminaUI();
+        UpdateTimerUI();
+        UpdateScoreUI();
     }
 
     void UpdateAmmoUI()
@@ -58,6 +65,29 @@ public class UIManager : MonoBehaviour
 
             // Optional: color change (green -> yellow -> red)
             staminaFillImage.color = Color.Lerp(Color.red, Color.blue, fillAmount);
+        }
+    }
+    void UpdateTimerUI()
+    {
+        if (timerText != null && GameManager.instance != null)
+        {
+            float time = Mathf.Max(GameManager.instance.roundTime, 0);
+            int minutes = Mathf.FloorToInt(time / 60f);
+            int seconds = Mathf.FloorToInt(time % 60f);
+
+            timerText.text = $"{minutes:00}:{seconds:00}";
+        }
+    }
+
+    void UpdateScoreUI()
+    {
+        if (GameManager.instance != null)
+        {
+            if (player1ScoreText != null)
+                player1ScoreText.text = GameManager.instance.player1Score.ToString();
+
+            if (player2ScoreText != null)
+                player2ScoreText.text = GameManager.instance.player2Score.ToString();
         }
     }
 }
