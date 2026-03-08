@@ -164,6 +164,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Gun
   firePoint: {fileID: 7202474882765541528}
   bulletPrefab: {fileID: 2320852088220114680, guid: 9f38052832dddaf4a97072b3244e1fa1, type: 3}
+  magazineSize: 6
+  reloadTime: 1.5
 --- !u!114 &5282511421996614268
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -187,7 +189,7 @@ MonoBehaviour:
   standingHeight: 2
   crouchHeight: 1
   normalFOV: 60
-  aimFOV: 30
+  aimFOV: 40
   zoomSpeed: 10
   gun: {fileID: 847357815877822930}
   playerCamera: {fileID: 596005379560656969}
