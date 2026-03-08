@@ -7,6 +7,8 @@ public class PlayerSpawner : MonoBehaviour
     public GameObject Player1Prefab;
     public GameObject Player2Prefab;
 
+    public Camera lobbyCamera; // camera used before players join
+
     private int playerCount = 0;
     private PlayerInputManager manager;
 
@@ -14,7 +16,7 @@ public class PlayerSpawner : MonoBehaviour
     {
         manager = PlayerInputManager.instance;
 
-        // First player will spawn this prefab
+        // First player prefab
         manager.playerPrefab = Player1Prefab;
     }
 
@@ -22,19 +24,30 @@ public class PlayerSpawner : MonoBehaviour
     {
         if (playerCount >= Spawnpoints.Length)
         {
-            Debug.LogWarning("PlayerCount exceeds spawn points. Ignoring join.");
+            Debug.LogWarning("PlayerCount exceeds spawn points.");
             return;
         }
 
-        // Move player to correct spawn point
+        // Disable lobby camera when first player joins
+        if (playerCount == 0 && lobbyCamera != null)
+        {
+            lobbyCamera.gameObject.SetActive(false);
+        }
+
+        // Move player to spawn point
         playerInput.transform.position = Spawnpoints[playerCount].position;
 
         playerCount++;
 
-        // Change prefab for the next player
         if (playerCount == 1)
         {
             manager.playerPrefab = Player2Prefab;
+        }
+
+        // Start game when both players join
+        if (playerCount == 2)
+        {
+            GameManager.instance.StartRound();
         }
     }
 }
