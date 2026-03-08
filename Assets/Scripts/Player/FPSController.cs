@@ -197,4 +197,10 @@ public class FPSControllerRigidbody : MonoBehaviour
         float triggerValue = value.Get<float>();
         isAiming = triggerValue > 0.1f;
     }
+
+    // Reload (West Button)
+    public void OnReload()
+    {
+        gun.Reload();
+    }
 }
