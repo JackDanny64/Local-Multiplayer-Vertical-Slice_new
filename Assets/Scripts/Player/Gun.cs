@@ -17,6 +17,16 @@ public class Gun : MonoBehaviour
         currentAmmo = magazineSize;
     }
 
+    public int CurrentAmmo
+    {
+        get { return currentAmmo; }
+    }
+
+    public int MagazineSize
+    {
+        get { return magazineSize; }
+    }
+
     public void Shoot()
     {
         if (isReloading)
@@ -50,13 +60,9 @@ public class Gun : MonoBehaviour
     {
         isReloading = true;
 
-        Debug.Log("Reloading...");
-
         yield return new WaitForSeconds(reloadTime);
 
         currentAmmo = magazineSize;
-
-        Debug.Log("Reloaded!");
 
         isReloading = false;
     }
