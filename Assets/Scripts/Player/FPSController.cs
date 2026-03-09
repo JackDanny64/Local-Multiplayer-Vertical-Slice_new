@@ -203,4 +203,18 @@ public class FPSControllerRigidbody : MonoBehaviour
     {
         gun.Reload();
     }
+
+    public void ResetPlayerState()
+    {
+        moveInput = Vector2.zero;
+        lookInput = Vector2.zero;
+        isRunning = false;
+        isCrouching = false;
+        jumpRequest = false;
+        currentStamina = maxStamina;
+
+        // Optionally reset camera rotation
+        xRotation = 0f;
+        playerCamera.localRotation = Quaternion.Euler(0f, 0f, 0f);
+    }
 }

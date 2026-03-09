@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 
 public class GameManager : MonoBehaviour
 {
@@ -38,28 +39,40 @@ public class GameManager : MonoBehaviour
         gameStarted = true;
     }
 
-    public void PlayerDied(int playerID, PlayerHealth player)
+    // This is the new method for handling death
+    public void KillPlayer(PlayerHealth player)
     {
-        if (playerID == 1)
+        // Increment opponent's score
+        if (player.playerID == 1)
             player2Score++;
         else
             player1Score++;
 
-        StartCoroutine(RespawnPlayer(playerID, player));
+        // Optional delay for death animation
+        StartCoroutine(RespawnPlayer(player));
     }
 
-    System.Collections.IEnumerator RespawnPlayer(int playerID, PlayerHealth player)
+    // Coroutine to handle respawn after short delay
+    private IEnumerator RespawnPlayer(PlayerHealth player)
     {
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(1f); // wait for 1 second before respawn
 
+        // Reset health
         player.ResetHealth();
 
-        if (playerID == 1)
+        // Move to spawn point
+        if (player.playerID == 1)
             player.transform.position = player1Spawn.position;
         else
             player.transform.position = player2Spawn.position;
 
-        player.gameObject.SetActive(true);
+        // Reset Rigidbody and controller state
+        Rigidbody rb = player.GetComponent<Rigidbody>();
+        rb.linearVelocity = Vector3.zero;
+        rb.angularVelocity = Vector3.zero;
+
+        FPSControllerRigidbody controller = player.GetComponent<FPSControllerRigidbody>();
+        controller.ResetPlayerState(); // You need to add this method in FPSControllerRigidbody
     }
 
     void EndRound()
